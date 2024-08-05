@@ -10,23 +10,28 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url() ?>home/add_club">
-                                Input Data Klub
+                                <i class='bx bx-edit fs-6'></i> Input Data Klub
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url() ?>home/add_skor">
-                                Input Data Skor A
+                                <i class='bx bx-edit-alt fs-6'></i> Input Data Skor A
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url() ?>home/add_skor_multipe">
-                                Input Data Skor B
+                                <i class='bx bx-edit-alt fs-6'></i> Input Data Skor B
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url() ?>home/view_klasemen">
-                                View Klasemen
+                                <i class='bx bx-grid-alt fs-6'></i> View Klasemen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2 text-danger" href="<?= base_url() ?>home/clear_data">
+                                <i class='bx bx-trash fs-6'></i> Delete Data
                             </a>
                         </li>
                     </ul>

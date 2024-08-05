@@ -11,14 +11,14 @@
     <h2>Form add skor</h2>
     <div class="col-lg-12 col-md-12">
         <?= $this->session->flashdata('message'); ?>
-        <?= validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+        <!-- <?= validation_errors('<div class="alert alert-danger">', '</div>'); ?> -->
         <div class="mt-2"></div>
         <form action="<?= base_url() ?>home/add_skor_multipe" method="POST">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="mb-3">
-                        <label for="nama_klub1" class="form-label">Nama Klub 1</label>
-                        <select name="nama_klub1[]" id="nama_klub1" class="form-control">
+                        <label for="nama_klub1_0" class="form-label">Nama Klub 1</label>
+                        <select name="nama_klub1[]" id="nama_klub1_0" class="form-control">
                             <option value="">--Pilih--</option>
                             <?php
                             foreach ($club as $c1) {
@@ -28,13 +28,13 @@
                             }
                             ?>
                         </select>
-                        <?= form_error('nama_klub1', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <?= form_error('nama_klub1[]', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="mb-3">
-                        <label for="nama_klub2" class="form-label">Nama Klub 2</label>
-                        <select name="nama_klub2[]" id="nama_klub2" class="form-control">
+                        <label for="nama_klub2_0" class="form-label">Nama Klub 2</label>
+                        <select name="nama_klub2[]" id="nama_klub2_0" class="form-control">
                             <option value="">--Pilih--</option>
                             <?php
                             foreach ($club as $c2) {
@@ -44,21 +44,21 @@
                             }
                             ?>
                         </select>
-                        <?= form_error('nama_klub2', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <?= form_error('nama_klub2[]', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="mb-3">
-                        <label for="skor_klub1" class="form-label">Skor Klub 1</label>
-                        <input type="text" name="skor_klub1[]" class="form-control" id="skor_klub1">
-                        <?= form_error('skor_klub1', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <label for="skor_klub1_0" class="form-label">Skor Klub 1</label>
+                        <input type="text" name="skor_klub1[]" class="form-control" id="skor_klub1_0">
+                        <?= form_error('skor_klub1[]', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="mb-3">
-                        <label for="skor_klub2" class="form-label">Skor Klub 2</label>
-                        <input type="text" name="skor_klub2[]" class="form-control" id="skor_klub2">
-                        <?= form_error('skor_klub2', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <label for="skor_klub2_0" class="form-label">Skor Klub 2</label>
+                        <input type="text" name="skor_klub2[]" class="form-control" id="skor_klub2_0">
+                        <?= form_error('skor_klub2[]', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
             </div>
@@ -69,63 +69,59 @@
     </div>
 </main>
 <script>
+    let hitungMatch = 1;
+
     function tambahMatch() {
         // alert('hello fik')
         var matchContent = document.getElementById('view_addmatch');
         var matchDiv = document.createElement('div');
         matchDiv.className = 'match';
+        // alert(hitungMatch + '|' + (hitungMatch * 2 + 1))
 
         matchDiv.innerHTML = `
-                <div class="row">
+            <div class="row">
                 <div class="col-lg-3">
                     <div class="mb-3">
-                        <label for="nama_klub1" class="form-label">Nama Klub 1</label>
-                        <select name="nama_klub1" id="nama_klub1" class="form-control">
+                        <label for="nama_klub1_${hitungMatch}" class="form-label">Nama Klub ${hitungMatch * 2 + 1}</label>
+                        <select name="nama_klub1[]" id="nama_klub1_${hitungMatch}" class="form-control">
                             <option value="">--Pilih--</option>
-                            <?php
-                            foreach ($club as $c1) {
-                            ?>
+                            <?php foreach ($club as $c1) { ?>
                                 <option value="<?= $c1->rowid ?>"><?= $c1->nama_klub; ?></option>
-                            <?php
-                            }
-                            ?>
+                            <?php } ?>
                         </select>
-                        <?= form_error('nama_klub1', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <?= form_error('nama_klub1[]', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="mb-3">
-                        <label for="nama_klub2" class="form-label">Nama Klub 2</label>
-                        <select name="nama_klub2" id="nama_klub2" class="form-control">
+                        <label for="nama_klub2_${hitungMatch}" class="form-label">Nama Klub ${hitungMatch * 2 + 2}</label>
+                        <select name="nama_klub2[]" id="nama_klub2_${hitungMatch}" class="form-control">
                             <option value="">--Pilih--</option>
-                            <?php
-                            foreach ($club as $c2) {
-                            ?>
+                            <?php foreach ($club as $c2) { ?>
                                 <option value="<?= $c2->rowid ?>"><?= $c2->nama_klub; ?></option>
-                            <?php
-                            }
-                            ?>
+                            <?php } ?>
                         </select>
-                        <?= form_error('nama_klub2', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <?= form_error('nama_klub2[]', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="mb-3">
-                        <label for="skor_klub1" class="form-label">Skor Klub 1</label>
-                        <input type="text" name="skor_klub1[]" class="form-control" id="skor_klub1">
-                        <?= form_error('skor_klub1', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <label for="skor_klub1_${hitungMatch}" class="form-label">Skor Klub ${hitungMatch * 2 + 1}</label>
+                        <input type="text" name="skor_klub1[]" class="form-control" id="skor_klub1_${hitungMatch}">
+                        <?= form_error('skor_klub1[]', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="mb-3">
-                        <label for="skor_klub2" class="form-label">Skor Klub 2</label>
-                        <input type="text" name="skor_klub2[]" class="form-control" id="skor_klub2">
-                        <?= form_error('skor_klub2', '<small class="text-danger pl-3">', '</small>'); ?>
+                        <label for="skor_klub2_${hitungMatch}" class="form-label">Skor Klub ${hitungMatch * 2 + 2}</label>
+                        <input type="text" name="skor_klub2[]" class="form-control" id="skor_klub2_${hitungMatch}">
+                        <?= form_error('skor_klub2[]', '<small class="text-danger">', '</small>'); ?>
                     </div>
                 </div>
             </div>
-            `;
+        `;
 
         matchContent.appendChild(matchDiv);
+        hitungMatch++;
     }
 </script>
